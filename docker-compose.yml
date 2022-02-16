@@ -1,0 +1,50 @@
+version: "3"
+
+networks:
+  default:
+    # Give the default network created below a sensible name:
+    name: axlib-telemetry
+
+services:
+  telemetry-frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend/
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:uid=101,gid=101
+      - /var/run:uid=101,gid=101
+      - /app/tmp:uid=101,gid=101
+    environment:
+      AXLIB_TELEMETRY_URL: ws://localhost:8000/feed
+    ports:
+      - 3000:8000
+    expose:
+      - 3000
+  telemetry-backend-shard:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/
+    read_only: true
+    command: [
+      'telemetry_shard',
+      '--listen', '0.0.0.0:8001',
+      '--core', 'http://telemetry-backend-core:8000/shard_submit'
+    ]
+    ports:
+      - 8001:8001
+    expose:
+      - 8001
+  telemetry-backend-core:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/
+    read_only: true
+    command: [
+      'telemetry_core',
+      '--listen', '0.0.0.0:8000'
+    ]
+    ports:
+      - 8000:8000
+    expose:
+      - 8000

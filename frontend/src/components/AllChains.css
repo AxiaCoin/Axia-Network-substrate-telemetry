@@ -1,0 +1,79 @@
+/*
+Source code for the Axlib Telemetry Server.
+Copyright (C) 2021 AXIA Technologies (UK) Ltd.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.AllChains {
+  position: fixed;
+  z-index: 20;
+  top: 16px;
+  bottom: 16px;
+  left: 50%;
+  margin: 0 0 0 -150px;
+  width: 25vw;
+  min-width: 300px;
+  background: #fff;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+  overflow-y: scroll;
+  overflow-x: hide;
+}
+
+.AllChains-overlay {
+  position: fixed;
+  display: block;
+  z-index: 19;
+  background: rgba(0, 0, 0, 0.35);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.AllChains-chain {
+  padding: 0 12px;
+  background: #b5aeae;
+  color: #444;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: relative;
+}
+
+.AllChains-node-count {
+  display: inline-block;
+  padding: 0 0.5em 0.1em;
+  border-radius: 1em;
+  background: #8c8787;
+  color: #fff;
+  font-weight: normal;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+  font-size: 0.9em;
+  line-height: 1.4em;
+  margin: 0 -0.3em 0 0.3em;
+}
+
+.AllChains-chain-selected {
+  background: #fff;
+  color: #000;
+}
+
+.AllChains-chain-selected .AllChains-node-count {
+  background: #178fe1;
+}
